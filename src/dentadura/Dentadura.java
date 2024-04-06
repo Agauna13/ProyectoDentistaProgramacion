@@ -23,7 +23,7 @@ public class Dentadura {
         // Maxilar superior
         for (int id = 11; id <= 18; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
-            boca[0][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
+            boca[0][pos] = new Diente(id, estado); //pongo el nuevo diente en su posicion
 
         }
         for (int id = 21; id <= 28; id++) {

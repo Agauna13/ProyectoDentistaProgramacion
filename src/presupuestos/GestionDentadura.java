@@ -8,7 +8,7 @@ import java.util.Objects;
 public class GestionDentadura {
 
     private Dentadura dentadura;
-    // Acceso seguro a PIEZAS
+
 
     public GestionDentadura(Dentadura dentadura) {
         this.dentadura = dentadura;
@@ -17,9 +17,9 @@ public class GestionDentadura {
     public void calcularPresupuesto() {
         double presupuestoTotal = 0.0;
         Diente[][] boca = dentadura.getBoca(); // Acceso seguro a boca
-        int piezas = dentadura.getPiezas();
+        int piezas = dentadura.getPiezas(); // Acceso seguro a PIEZAS
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= 1; i++) { //recorremos la boca buscando dientes que hayamos tratado
             for (int j = 0; j < piezas / 2; j++) {
                 Diente diente = boca[i][j];
                 if(!Objects.equals(diente.getEstado(), "B")) {
@@ -68,6 +68,7 @@ public class GestionDentadura {
                 break;
             case "P":
                 System.out.println("Prótesis:.... " + precioUnitario);
+                break;
             default:
                 System.out.println("Error:.... " + precioUnitario);
                 break;
