@@ -1,0 +1,10 @@
+Posibles mejoras para el proyecto:
+
+    Ajustar la clase dentadura, pera que en vez de usar un array, utilice un HashMap para guardar cada pieza asociada
+    a su Estado.
+
+    Implementar una clase que nos permita utilizar la propagación de errores para los casos en los que un usuario nos
+    Intente introducir un diente o estado que no exista. Verificar que no nos intenten poner un estado en el que una
+    pieza ya se haya o un estado a un diente que haya sido extraído, Además de estados inconsistentes con una prótesis
+    (EJ: un prótesis no puede tener caries)
+
