@@ -1,7 +1,5 @@
 package DBCustomer;
 
-import dentadura.*;
-import presupuestos.*;
 import java.sql.*;
 
 public class Conection {
@@ -12,73 +10,39 @@ public class Conection {
     static final String USER = "root";
     static final String PASS = "mypass";
 
-    public static void main(String[] args) {
+    // Método para insertar un nuevo cliente en la tabla clientes
+    public static void insertarCliente(String dni, String nombre, String telefono, String direccion) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            // Insertar datos en la tabla usuarios
-            insertarUsuario(conn, "Nuevo Usuario", "nuevo_usuario@example.com");
-
-            // Leer datos de la tabla usuarios
-            System.out.println("Usuarios:");
-            mostrarUsuarios(conn);
-
-            // Actualizar datos en la tabla usuarios
-            //actualizarUsuario(conn, 1, "Usuario Actualizado", "usuario_actualizado@example.com");
-
-            // Eliminar datos de la tabla usuarios
-            //eliminarUsuario(conn, 3);
-
+            try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO clientes (dni, nombre, telefono, direccion) VALUES (?, ?, ?, ?)")) {
+                stmt.setString(1, dni);
+                stmt.setString(2, nombre);
+                stmt.setString(3, telefono);
+                stmt.setString(4, direccion);
+                stmt.executeUpdate();
+                System.out.println("Cliente insertado correctamente.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Método para insertar un nuevo usuario en la tabla usuarios
-    static void insertarUsuario(Connection conn, String nombre, String email) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO usuarios (nombre, email) VALUES (?, ?)")) {
-            stmt.setString(1, nombre);
-            stmt.setString(2, email);
-            stmt.executeUpdate();
-            System.out.println("Usuario insertado correctamente.");
-        }
-    }
-
-    // Método para mostrar todos los usuarios de la tabla usuarios
-    static void mostrarUsuarios(Connection conn) throws SQLException {
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) {
+    // Método para mostrar todos los clientes de la tabla clientes
+    public static void mostrarClientes(String dni) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes WHERE dni = '" + dni + "'")) {
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +
+                System.out.println("DNI: " + rs.getString("dni") +
                         ", Nombre: " + rs.getString("nombre") +
-                        ", Email: " + rs.getString("email"));
+                        ", Teléfono: " + rs.getString("telefono") +
+                        ", Dirección: " + rs.getString("direccion"));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    // Método para actualizar un usuario en la tabla usuarios
-    static void actualizarUsuario(Connection conn, int id, String nuevoNombre, String nuevoEmail) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?")) {
-            stmt.setString(1, nuevoNombre);
-            stmt.setString(2, nuevoEmail);
-            stmt.setInt(3, id);
-            int filasActualizadas = stmt.executeUpdate();
-            if (filasActualizadas > 0) {
-                System.out.println("Usuario actualizado correctamente.");
-            } else {
-                System.out.println("No se encontró ningún usuario con el ID proporcionado.");
-            }
-        }
-    }
-
-    // Método para eliminar un usuario de la tabla usuarios
-    static void eliminarUsuario(Connection conn, int id) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuarios WHERE id = ?")) {
-            stmt.setInt(1, id);
-            int filasEliminadas = stmt.executeUpdate();
-            if (filasEliminadas > 0) {
-                System.out.println("Usuario eliminado correctamente.");
-            } else {
-                System.out.println("No se encontró ningún usuario con el ID proporcionado.");
-            }
-        }
-    }
+    // Agrega aquí otros métodos para actualizar y eliminar clientes si es necesario
 }
+
+
