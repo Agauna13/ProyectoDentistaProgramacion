@@ -1,17 +1,35 @@
 package dentadura;
 
+import Empleados.Dentista;
+import Empleados.Recepcionista;
 import presupuestos.GestionDentadura;
 import DBCustomer.*;
+
+import java.sql.SQLOutput;
+
+import java.util.Scanner;
+
+import static java.lang.System.in;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        //crear usuario
-        Conection.insertarCliente("X9074791A", "Alan Gauna", "603807972", "Indalecio prieto 35, Palma");
-        Conection.mostrarClientes("X9074791A");
+        Scanner sc = new Scanner(System.in);
+        //inicio de sesion
+        System.out.print("introduzca su nombre de usuario: ");
+        String username = sc.nextLine();
+        System.out.print("introduzca su contraseña: ");
+        String password = sc.nextLine();
 
-        //crear dentadura
+        if(username.equals("alan") || username.equals("ALAN") && password.equals(Dentista.getPass())){
+            Dentista dentista = new Dentista();
+        }else if(username.equals("rafa") || username.equals("RAFA") && password.equals(Recepcionista.getPass())){
+            Recepcionista recepcionista = new Recepcionista();
+        }
+
+
+
 
         Dentadura d = new Dentadura(new int[]{23}, "E");
         d.setDiente(11, "X");
