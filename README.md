@@ -1,19 +1,13 @@
 Proyecto Programación de Semana Santa.
 
-El proyecto consiste en un pequeño programa que pueda servir para generar presupuestos en una clínica dental (de manera muy basica, de momento).
+Tras unos cuantos cambios, va tomando forma. La estructura provisional nos deja con 5 paquetes para gestionar los diferentes aspectos de nuestro programa.
 
-Consiste en 2 paquetes con 4 clases:
-    El primer paquete es el llamado Dentadura, consiste de 3 clases:
-        La clase Dentadura, que recibe como parámetro un ID y un estado y nos genera un pequeño mapa de una boca según el sistema de numeración FDI
-        que utilizan los odontólogos para orientarse dentro de una madíbula. Lo que nos devuelve esta clase, es un mapa dónde, por defecto, los dientes
-        tienen el estado "B" bien o que no necesitan intervención y en la posición de los dientes pasados como parámetro, nos imprime el estado del 
-        diente en cuestión según esta e[X]traído, [E]mpastado o si ha sido necesaria una [P]rótesis.
+Por una parte tenemos el paquete de clientes, en el que la intención es crear objetos del tipo cliente para ir ingresando a la base de datos.
 
-        La clase Diente se encarga de asignar correctamente los parámetros pasados y nos hace de intermediario entre las clases privadas de Dentadura y 
-        la clase Main.
+Por otro lado, está el paquete DBCustomer, que nos hace la conexión a la base de datos y se encarga de las diferentes tareas de creacion y modificación de registros.
 
-        La clase Main que es la que recibe los constructores con sus parámetros para finalmente imprimirnos el resultado.
+En tercer lugar, nos queda el paquete dentadura, que nos construye la dentadura de cada cliente en funcion de las intervenciones realizadas al mismo
 
-    El segundo Paquete llamado Presupuestos contiene sólo la clase GestionDentaddura, que recibiendo como parámetro la dentadura que hemos modificado,
-    obtiene el estado de todos los dientes que han sido intervenidos para generar un rpesupuesto e imprimirnos un desglose con el precio por unidad
-    intervenida y el precio final del presupuesto.
+en cuarto lugar, un pequeño filtro de empleados para restringir el acceso a la base de datos según su categoría en la clinica
+
+y por último, la clase que nos creará los presupuestos en funcion de las intervenciones hechas a cada dentadura.

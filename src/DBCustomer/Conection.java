@@ -45,7 +45,7 @@ public class Conection {
         String sql = "SELECT * FROM clientes";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
-            ResultSet resultSet = pstmt.executeQuery();
+            pstmt.executeQuery()
 
         }catch (SQLException e) {
         e.printStackTrace();
