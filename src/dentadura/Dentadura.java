@@ -8,22 +8,16 @@ public class Dentadura {
     private final int PIEZAS = 32;
     private Diente[][] boca; //fila 0 es el maxilar superior, fila 1 maxila inferior
 
-    /*Sistema de numeración de Palmer: En este sistema, se utiliza una letra mayúscula para identificar
-     cada cuadrante de la boca (A para el cuadrante superior derecho, B para el cuadrante superior izquierdo,
-     C para el cuadrante inferior izquierdo y D para el cuadrante inferior derecho), seguida de un número para
-     identificar el diente dentro de ese cuadrante. Por ejemplo, el primer molar superior derecho sería A6, y
-     el primer molar inferior derecho sería D6.*/
-
     public Dentadura() {//constructor vacio que crea la dentadura con dientes
         //inicializo la estructura
         boca = new Diente[2][PIEZAS / 2];
-        //Lleno la boca con los dientes
+        //LLENAR LA BOCA CON LOS DIENTES
         int pos;
         String estado = "B";
         // Maxilar superior
         for (int id = 11; id <= 18; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
-            boca[0][pos] = new Diente(id, estado); //pongo el nuevo diente en su posicion
+            boca[0][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
 
         }
         for (int id = 21; id <= 28; id++) {
