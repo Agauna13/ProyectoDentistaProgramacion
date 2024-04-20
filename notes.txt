@@ -8,3 +8,8 @@ Posibles mejoras para el proyecto:
     pieza ya se haya o un estado a un diente que haya sido extraído, Además de estados inconsistentes con una prótesis
     (EJ: un prótesis no puede tener caries)
 
+
+    Implementar dentro del paquete empleado, el esquema de try catch según los permisos.
+
+
+
