@@ -1,15 +1,18 @@
 Posibles mejoras para el proyecto:
 
-    Ajustar la clase dentadura, pera que en vez de usar un array, utilice un HashMap para guardar cada pieza asociada
-    a su Estado.
+    para el tema permisos según usuario, lo mejor es manejar desde una sola sesión con un
+    try catch desde java hasta la base de datos y tratar las excepciones que nos suelte sql.
 
-    Implementar una clase que nos permita utilizar la propagación de errores para los casos en los que un usuario nos
-    Intente introducir un diente o estado que no exista. Verificar que no nos intenten poner un estado en el que una
-    pieza ya se haya o un estado a un diente que haya sido extraído, Además de estados inconsistentes con una prótesis
-    (EJ: un prótesis no puede tener caries)
+    para crear clientes, hacerlo solo desde la clase clientes, en el rol de recepcionista.
+
+    para crear dentaduras, hacerlos desde la clase cliente solo en el rol de dentista.
+
+    eliminar clases de empleados y ver si se puede aplicar el tema de clases abstractas o
+    interfaces con el tema de la creacion de las dentaduras.
 
 
-    Implementar dentro del paquete empleado, el esquema de try catch según los permisos.
+
+
 
 
 

@@ -3,17 +3,19 @@ package Clientes;
 import java.sql.Date;
 
 public class Cliente {
-    private int idCliente;
     private String dni;
     private String nombreApellidos;
     private java.sql.Date fechaNacimiento;
-    private int edadMenor6;
     private int telefono;
     private String email;
 
 
-    private Cliente(String dni, String nombreApellidos, java.sql.Date fechaNacimiento, int telefono, String email){
-
+    public Cliente(String dni, String nombreApellidos, java.sql.Date fechaNacimiento, int telefono, String email){
+        this.dni = dni;
+        this. nombreApellidos = nombreApellidos;
+        this.fechaNacimiento=fechaNacimiento;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     public String getDni() {
@@ -35,5 +37,25 @@ public class Cliente {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setNombreApellidos(String nombreApellidos) {
+        this.nombreApellidos = nombreApellidos;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
