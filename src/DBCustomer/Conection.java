@@ -2,6 +2,7 @@ package DBCustomer;
 
 import java.sql.*;
 import Clientes.Cliente;
+import dentadura.*;
 
 public class Conection {
     // Definir la URL de conexión a la base de datos
@@ -60,8 +61,20 @@ public class Conection {
         }
     }
 
-    public void insertarDentadura(Cliente cliente){
+    public void insertarDentadura(Cliente cliente, Dentadura dentadura) throws SQLException{
+        String sql = "INSERT INTO dentaduras (dni_cliente, Zona1, Zona2, Zona3, Zona4) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cliente.getDni());
+            pstmt.setString(2, dentadura.Zona1);
+            pstmt.setString(3, dentadura.Zona2);
+            pstmt.setString(4, dentadura.Zona3);
+            pstmt.setString(5, dentadura.Zona4);
 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void mostrarDentadura(Cliente cliente){

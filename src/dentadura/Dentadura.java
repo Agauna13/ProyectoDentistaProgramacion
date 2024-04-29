@@ -8,6 +8,11 @@ public class Dentadura {
     private final int PIEZAS = 32;
     private Diente[][] boca; //fila 0 es el maxilar superior, fila 1 maxila inferior
 
+    public String Zona1 = "";
+    public String Zona2 = "";
+    public String Zona3 = "";
+    public String Zona4 = "";
+
     public Dentadura() {//constructor vacio que crea la dentadura con dientes
         //inicializo la estructura
         boca = new Diente[2][PIEZAS / 2];
@@ -15,22 +20,26 @@ public class Dentadura {
         int pos;
         String estado = "B";
         // Maxilar superior
+        //Zona1
         for (int id = 11; id <= 18; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
             boca[0][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
 
         }
+        //Zona2
         for (int id = 21; id <= 28; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
             boca[0][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
 
         }
         // Maxilar inferior
+        //Zona3
         for (int id = 41; id <= 48; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
             boca[1][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
 
         }
+        //Zona4
         for (int id = 31; id <= 38; id++) {
             pos = posicion(id);//posicion del diente en el maxilar
             boca[1][pos] = new Diente(id, estado);//pongo el nuevo diente en su posicion
@@ -131,6 +140,31 @@ public class Dentadura {
 
     }
 
+    public void zonas(){
+        //Zona1
+        for (int i = 7; i >= 0; i--) {
+            System.out.print(this.boca[0][i].getId() + " ");
+            Zona1 += this.boca[0][i].getEstado();
+        }
+        System.out.println();
+        //Zona2
+        for (int i = 8; i < 16; i++) {
+            System.out.print(this.boca[0][i].getId() + " ");
+            Zona2 += this.boca[0][i].getEstado();
+        }
+        System.out.println();
+        //Zona2
+        for (int i = 8; i < 16; i++) {
+            System.out.print(this.boca[1][i].getId() + " ");
+            Zona3 += this.boca[1][i].getEstado();
+        }
+        System.out.println();
+        for (int i = 7; i >= 0; i--) {
+            System.out.print(this.boca[1][i].getId() + " ");
+            Zona4 += this.boca[1][i].getEstado();
+        }
+    }
+
     private int maxilar(int id) //devuelve el maxilar (0 -> superior 1-> inferior) para un determinado id
     {
         if (id < 30) {
@@ -144,19 +178,19 @@ public class Dentadura {
     {
         if (maxilar(id) == 0) //estamos en el superior
         {
-            if (id < 19) //estamos a la derecha [18...11]
+            if (id < 19) //estamos a la derecha [18...11]  Zona1
             {
                 return 7 - (id - 11);
-            } else //estamos a la izquierda [21...28]
+            } else //estamos a la izquierda [21...28]  Zona2
             {
                 return 8 + (id - 21);
             }
         } else //estamos en el inferior
         {
-            if (id > 40) //estamos a la derecha [48...41]
+            if (id > 40) //estamos a la derecha [48...41]  //Zona3
             {
                 return (48 - id);
-            } else //estamos a la izquierda [31...38]
+            } else //estamos a la izquierda [31...38]  //Zona4
             {
                 return 8 + (id - 31);
             }
