@@ -1,12 +1,5 @@
 Posibles mejoras para el proyecto:
 
-    para el tema permisos según usuario, lo mejor es manejar desde una sola sesión con un
-    try catch desde java hasta la base de datos y tratar las excepciones que nos suelte sql.
-
-    para crear clientes, hacerlo solo desde la clase clientes, en el rol de recepcionista.
-
-    para crear dentaduras, hacerlos desde la clase cliente solo en el rol de dentista.
-
     eliminar clases de empleados y ver si se puede aplicar el tema de clases abstractas o
     interfaces con el tema de la creacion de las dentaduras.
 

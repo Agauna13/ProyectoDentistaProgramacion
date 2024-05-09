@@ -58,16 +58,20 @@ public class GestionDentadura {
     private void precioUnitario(Diente diente){
         String estado = diente.getEstado();
         double precioUnitario = calcularCostoDiente(diente);
+        String x = "Extracción:.......";
+        String e = "Empaste:..........";
+        String p = "Prótesis:.......";
+
 
         switch (estado) {
             case "X":
-                System.out.println("Extracción:.... " + precioUnitario);
+                System.out.println(x + precioUnitario);
                 break;
             case "E":
-                System.out.println("Empaste:.... " + precioUnitario);
+                System.out.println(e + precioUnitario);
                 break;
             case "P":
-                System.out.println("Prótesis:.... " + precioUnitario);
+                System.out.println(p + precioUnitario);
                 break;
             default:
                 System.out.println("Error:.... " + precioUnitario);

@@ -13,7 +13,7 @@ import Clientes.*;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("nombre de usuario: ");
         String USER = sc.nextLine();
@@ -51,6 +51,13 @@ public class Main {
         }catch(Exception e){
             System.err.println("poronga esta....");
         }
+
+        try{
+            conection.borrarCliente(cliente);
+        }catch(Exception e){
+            System.err.println("poronga esta....");
+        }
+
 
     }
 
