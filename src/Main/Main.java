@@ -36,26 +36,26 @@ public class Main {
         try{
             conection.insertarCliente(cliente);
         }catch(Exception e){
-            System.err.println("poronga esta....");
+            System.out.println(e);
         }
 
 
         try {
             conection.mostrarClientes(cliente);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
 
         try{
             conection.insertarDentadura(cliente, d);
         }catch(Exception e){
-            System.err.println("poronga esta....");
+            System.err.println(e);
         }
 
         try{
             conection.borrarCliente(cliente);
         }catch(Exception e){
-            System.err.println("poronga esta....");
+            System.err.println(e);
         }
 
 

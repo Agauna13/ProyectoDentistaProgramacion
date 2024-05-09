@@ -89,7 +89,7 @@ public class Conection {
 
     public void insertarDentadura(Cliente cliente, Dentadura dentadura) throws SQLException{
         String sqlBuscar = "SELECT COUNT(*) AS cantidad FROM dentaduras WHERE dni_cliente = ?";
-        String sqlActualizar = "UPDATE dentaduras SET Zona1 = ?, Zona2 = ?, Zona3 = ?, Zona4 = ? WHERE dni_clieste = ?";
+        String sqlActualizar = "UPDATE dentaduras SET Zona1 = ?, Zona2 = ?, Zona3 = ?, Zona4 = ? WHERE dni_cliente = ?";
         String sqlInsertar = "INSERT INTO dentaduras (dni_cliente, Zona1, Zona2, Zona3, Zona4) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmtBuscar = conn.prepareStatement(sqlBuscar);
