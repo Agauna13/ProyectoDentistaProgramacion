@@ -1,8 +1,9 @@
 package Clientes;
 
+import DBCustomer.*;
 import java.sql.Date;
 
-public class Cliente {
+public class Cliente{
     private String dni;
     private String nombreApellidos;
     private java.sql.Date fechaNacimiento;
@@ -58,4 +59,9 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
+
+
 }

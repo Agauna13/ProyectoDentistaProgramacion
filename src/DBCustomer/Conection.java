@@ -6,7 +6,7 @@ import dentadura.*;
 
 public class Conection {
     // Definir la URL de conexión a la base de datos
-    static final String DB_URL = "jdbc:mariadb://localhost:3306/clinica_dental";
+    static final String DB_URL = "jdbc:mariadb://localhost:3312/clinica_dental";
 
     private String USER;
 
