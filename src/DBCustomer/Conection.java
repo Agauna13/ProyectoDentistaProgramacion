@@ -33,16 +33,21 @@ public class Conection {
         String sql = "SELECT * FROM clientes where dni = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
+
             pstmt.setString(1, dni);
             ResultSet rs = pstmt.executeQuery();
+            int count = 0;
             while(rs.next()){
+                count++;
                 System.out.print(rs.getString("dni") + ", ");
                 System.out.print(rs.getString("nombre_apellidos") + ", ");
                 System.out.print(rs.getDate("fecha_nacimiento") + ", ");
                 System.out.print(rs.getInt("telefono") + ", ");
                 System.out.print(rs.getString("email"));
             }
-
+            if(count == 0){
+                System.out.println("Cliente no encontrado.");
+            }
         }catch (SQLException e) {
             e.printStackTrace();
         }

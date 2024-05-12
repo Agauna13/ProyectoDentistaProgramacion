@@ -14,7 +14,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        Cliente cliente = null;
+        Dentadura dentadura = null;
         System.out.println("Bienvenido a la Clinica Dental: \n Inicie sesión para continuar");
         System.out.println("nombre de usuario: ");
         String USER = sc.nextLine();
@@ -35,12 +36,14 @@ public class Main {
 
         switch(sc.nextInt()) {
             case 1:
-                crearCliente(conection);
+                cliente = crearCliente(conection);
                 break;
-                case 2:
-                    buscarCliente(conection);
-                    break;
-            default:
+            case 2:
+                buscarCliente(conection);
+                break;
+            case 3:
+                cliente = actualizarCliente(cliente);
+                default:
                 throw new IllegalStateException("Unexpected value: " + sc.nextInt());
         }
         /*
@@ -86,6 +89,10 @@ public class Main {
 
     }
 
+    private static Cliente actualizarCliente(Cliente cliente) {
+        return cliente;
+    }
+
     private static void buscarCliente(Conection conection) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduzca el DNI de su cliente: ");
@@ -99,7 +106,7 @@ public class Main {
 
     }
 
-    private static void crearCliente(Conection conection) {
+    private static Cliente crearCliente(Conection conection) {
         Scanner sc = new Scanner(System.in);
         String dni, nombreYapellidos, fecha, email;
         int telefono;
@@ -122,6 +129,8 @@ public class Main {
         }catch(Exception e){
             System.out.println(e);
         }
+
+        return cliente;
     }
 
 }
