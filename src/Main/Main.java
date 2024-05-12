@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.Scanner;
 
 import DBCustomer.*;
-import DBCustomer.*;
 import dentadura.*;
 import presupuestos.*;
 import Clientes.*;
@@ -37,7 +36,12 @@ public class Main {
         switch(sc.nextInt()) {
             case 1:
                 crearCliente(conection);
-
+                break;
+                case 2:
+                    buscarCliente(conection);
+                    break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + sc.nextInt());
         }
         /*
 
@@ -79,6 +83,19 @@ public class Main {
             System.err.println(e);
         }*/
 
+
+    }
+
+    private static void buscarCliente(Conection conection) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca el DNI de su cliente: ");
+        String DNI = sc.next();
+
+        try {
+            conection.buscarClientes(DNI);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
     }
 

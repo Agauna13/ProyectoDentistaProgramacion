@@ -27,22 +27,24 @@ public class Conection {
 
 
     // Método para obtener todos los clientes de la tabla clientes
-    public void mostrarClientes(Cliente cliente) throws SQLException {
+
+
+    public void buscarClientes(String dni) throws SQLException {
         String sql = "SELECT * FROM clientes where dni = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
-             pstmt.setString(1, cliente.getDni());
-             ResultSet rs = pstmt.executeQuery();
-             while(rs.next()){
-                 System.out.print(rs.getString("dni") + ", ");
-                 System.out.print(rs.getString("nombre_apellidos") + ", ");
-                 System.out.print(rs.getDate("fecha_nacimiento") + ", ");
-                 System.out.print(rs.getInt("telefono") + ", ");
-                 System.out.print(rs.getString("email"));
-             }
+            pstmt.setString(1, dni);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                System.out.print(rs.getString("dni") + ", ");
+                System.out.print(rs.getString("nombre_apellidos") + ", ");
+                System.out.print(rs.getDate("fecha_nacimiento") + ", ");
+                System.out.print(rs.getInt("telefono") + ", ");
+                System.out.print(rs.getString("email"));
+            }
 
         }catch (SQLException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
