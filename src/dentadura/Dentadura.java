@@ -1,8 +1,6 @@
 package dentadura;
 
-import java.util.*;
-
-public class Dentadura {
+public class Dentadura{
 
     //Estados: Bien, Extraido, Empastado, protesis
     private final int PIEZAS = 32;

@@ -36,43 +36,24 @@ public class Main {
 
         switch(sc.nextInt()) {
             case 1:
-                cliente = crearCliente(conection);
+                cliente = crearCliente(conection, cliente);
                 break;
             case 2:
                 buscarCliente(conection);
                 break;
             case 3:
-                cliente = actualizarCliente(cliente);
+                cliente = actualizarCliente(conection, cliente);
                 default:
                 throw new IllegalStateException("Unexpected value: " + sc.nextInt());
         }
         /*
 
-        Dentadura d = new Dentadura(new int[]{11, 22, 33, 44}, "E");
+        Dentadura dentadura = new Dentadura(new int[]{11, 22, 33, 44}, "E");
 
-        d.zonas();
-        System.out.println();
-        System.out.println(d.Zona1);
-        System.out.println(d.Zona2);
-        System.out.println(d.Zona3);
-        System.out.println(d.Zona4);
-
-        Conection conection = new Conection(USER, PASS);
-        Cliente cliente = new Cliente("60352725N", "Alan Gauna",
-        Date.valueOf("1990-07-07"), 603807972, "amg07071990@gmail.com");
-
-        try{
-            conection.insertarCliente(cliente);
-        }catch(Exception e){
-            System.out.println(e);
-        }
+        dentadura.zonas();
 
 
-        try {
-            conection.mostrarClientes(cliente);
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+
 
         try{
             conection.insertarDentadura(cliente, d);
@@ -80,16 +61,18 @@ public class Main {
             System.err.println(e);
         }
 
-        /*try{
-            conection.borrarCliente(cliente);
-        }catch(Exception e){
-            System.err.println(e);
-        }*/
+        */
 
 
     }
 
-    private static Cliente actualizarCliente(Cliente cliente) {
+    private static Cliente actualizarCliente(Conection conection, Cliente cliente) {
+        cliente = menuCliente(cliente);
+        try{
+            conection.insertarCliente(cliente);
+        }catch(Exception e){
+            System.out.println(e);
+        }
         return cliente;
     }
 
@@ -106,7 +89,20 @@ public class Main {
 
     }
 
-    private static Cliente crearCliente(Conection conection) {
+    private static Cliente crearCliente(Conection conection, Cliente cliente) {
+        cliente = menuCliente(cliente);
+
+        try{
+            conection.insertarCliente(cliente);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        return cliente;
+    }
+
+
+    private static Cliente menuCliente(Cliente cliente){
         Scanner sc = new Scanner(System.in);
         String dni, nombreYapellidos, fecha, email;
         int telefono;
@@ -121,15 +117,8 @@ public class Main {
         System.out.println("introduzca el email del cliente");
         email=sc.next();
 
-        Cliente cliente = new Cliente(dni, nombreYapellidos,
+        cliente = new Cliente(dni, nombreYapellidos,
                 Date.valueOf(fecha), telefono, email);
-
-        try{
-            conection.insertarCliente(cliente);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
         return cliente;
     }
 
