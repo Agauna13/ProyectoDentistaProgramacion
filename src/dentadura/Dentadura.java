@@ -1,15 +1,19 @@
 package dentadura;
 
-public class Dentadura{
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Dentadura {
 
     //Estados: Bien, Extraido, Empastado, protesis
     private final int PIEZAS = 32;
     private Diente[][] boca; //fila 0 es el maxilar superior, fila 1 maxila inferior
+    private String diagrama = "";
 
-    public String Zona1 = "";
-    public String Zona2 = "";
-    public String Zona3 = "";
-    public String Zona4 = "";
+    private String Zona1 = "";
+    private String Zona2 = "";
+    private String Zona3 = "";
+    private String Zona4 = "";
 
     public Dentadura() {//constructor vacio que crea la dentadura con dientes
         //inicializo la estructura
@@ -44,12 +48,12 @@ public class Dentadura{
         }
     }
 
-    public Dentadura(int[] cambiar, String estado) {
+    public Dentadura(HashMap<Integer, String> cambiar) {
         this(); //llamo y ejecuto el constructor por defecto
-        for (int i = 0; i < cambiar.length; i++) { //recorro el array cambiar
-            setDiente(cambiar[i], estado);
-
+        for (Integer diente : cambiar.keySet()) { //recorro el array cambiar
+            setDiente(diente, cambiar.get(diente));
         }
+        zonas();
     }
 
     public Diente getDiente(int id) { //retorna el diente con el 'id'
@@ -88,11 +92,11 @@ public class Dentadura{
         return true;
     }
 
-    public int getPiezas(){
+    public int getPiezas() {
         return PIEZAS;
     }
 
-    public Diente[][] getBoca(){
+    public Diente[][] getBoca() {
         return boca;
     }
 
@@ -100,65 +104,76 @@ public class Dentadura{
         //Mostramos el id de la Mandíbula superior
         for (int i = 0; i < PIEZAS / 2; i++) {
             System.out.print(this.boca[0][i].getId() + " ");
+            diagrama += this.boca[0][i].getId() + " ";
         }
-
+        diagrama += "\n";
         System.out.println();
         for (int i = 0; i < PIEZAS / 2; i++) {
             System.out.print(" | ");
+            diagrama += " | ";
         }
         System.out.println();
         //Mostramos el estado a menos que este 'E[x]traído'
         for (int i = 0; i < (PIEZAS / 2); i++) {
             if (!"X".equals(this.boca[0][i].getEstado())) {
                 System.out.print(" " + this.boca[0][i].getEstado() + " ");
+                diagrama += " " + this.boca[0][i].getEstado() + " ";
             } else {
                 System.out.print("   ");
+                diagrama+="   ";
             }
         }
+        diagrama += "\n";
         System.out.println();
         //Mostramos el estado a menos que este 'E[x]traído'
         for (int i = 0; i < (PIEZAS / 2); i++) {
             if (!"X".equals(this.boca[1][i].getEstado())) {
                 System.out.print(" " + this.boca[1][i].getEstado() + " ");
+                diagrama += " " + this.boca[1][i].getEstado() + " ";
             } else {
                 System.out.print("   ");
+                diagrama += "   ";
             }
         }
+        diagrama += "\n";
         System.out.println();
 
         for (int i = 0; i < PIEZAS / 2; i++) {
             System.out.print(" | ");
+            diagrama += " | ";
         }
         System.out.println();
         //Mostramos la mandíbula inferior
         for (int i = 0; i < (PIEZAS / 2); i++) {
             System.out.print(this.boca[1][i].getId() + " ");
+            diagrama += this.boca[1][i].getId() + " ";
         }
+        diagrama += "\n";
         System.out.println();
 
     }
 
-    public void zonas(){
+    public void zonas() {
         //Zona1
         for (int i = 7; i >= 0; i--) {
-            System.out.print(this.boca[0][i].getId() + " ");
+            //System.out.print(this.boca[0][i].getId() + " ");
             Zona1 += this.boca[0][i].getEstado();
         }
-        System.out.println();
+        //System.out.println();
         //Zona2
         for (int i = 8; i < 16; i++) {
-            System.out.print(this.boca[0][i].getId() + " ");
+            //System.out.print(this.boca[0][i].getId() + " ");
             Zona2 += this.boca[0][i].getEstado();
         }
-        System.out.println();
-        //Zona2
+        //System.out.println();
+        //Zona3
         for (int i = 8; i < 16; i++) {
-            System.out.print(this.boca[1][i].getId() + " ");
+            //System.out.print(this.boca[1][i].getId() + " ");
             Zona3 += this.boca[1][i].getEstado();
         }
-        System.out.println();
+        //System.out.println();
         for (int i = 7; i >= 0; i--) {
-            System.out.print(this.boca[1][i].getId() + " ");
+            //System.out.print(this.boca[1][i].getId() + " ");
             Zona4 += this.boca[1][i].getEstado();
         }
     }
@@ -193,6 +208,23 @@ public class Dentadura{
                 return 8 + (id - 31);
             }
         }
+    }
+
+    public String getZona1(){
+        return Zona1;
+    }
+    public String getZona2(){
+        return Zona2;
+    }
+    public String getZona3(){
+        return Zona3;
+    }
+    public String getZona4(){
+        return Zona4;
+    }
+
+    public String getDiagrama(){
+        return this.diagrama;
     }
 
 }

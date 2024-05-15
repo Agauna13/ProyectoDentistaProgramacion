@@ -1,31 +1,39 @@
 package presupuestos;
 
+import Clientes.Cliente;
 import dentadura.*;
+import java.io.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import Alarmas.*;
 
 public class Presupuesto{
-
+    private static int idPresupuesto = 0;
+    private Cliente cliente;
     private Dentadura dentadura;
     private HashMap<String, Integer> intervenciones = new HashMap<>();
     private Date fechaPresupuesto;
     private String cuerpo;
     private int total;
+    private String presu;
 
 
-    public Presupuesto(Dentadura dentadura){
+    public Presupuesto(Dentadura dentadura, Cliente cliente) throws IOException {
+        idPresupuesto++;
+        this.cliente = cliente;
         this.dentadura = dentadura;
         this.fechaPresupuesto = new Date();
         generarPresupuesto();
         this.total = calcularTotal();
         this.cuerpo = cuerpo();
+        presu = toString();
+        imprimirPresupuesto();
 
     }
 
-    /*metemos en un hashmap como clave el estado del diente si lo hemos modificado y en el valor, el costo del diente.
-    public HashMap h1(Diente[][] boca){
-        for(String s : dentadura.getBoca())
-    }*/
+
     public void generarPresupuesto() {
         Diente[][] boca = dentadura.getBoca(); // Acceso seguro a boca
         int piezas = dentadura.getPiezas(); // Acceso seguro a PIEZAS
@@ -98,6 +106,15 @@ public class Presupuesto{
         return body;
     }
 
+    @Override
+    public String toString(){
+        return "Presupuesto nº: " + idPresupuesto +
+                "\n" + cliente.toString() +
+                "\n" + "Fecha Presupuesto " + fechaPresupuesto +
+                "\n" + "Conceptos: " + cuerpo +
+                "\n" + "Total: " + total;
+    }
+
     public Date getFechaPresupuesto() {
         return fechaPresupuesto;
     }
@@ -112,6 +129,33 @@ public class Presupuesto{
 
     public int getTotal() {
         return total;
+    }
+
+    public void imprimirPresupuesto() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("introduzca el nombre del archivo ");
+        String archivo = sc.nextLine();
+        System.out.println("Introduce la fecha de la intervencion en formato yyyy-MM-dd:");
+        String fechaIntervencion = sc.nextLine();
+
+        LocalDate fechaIntroducida = LocalDate.parse(fechaIntervencion, DateTimeFormatter.ISO_DATE);
+        LocalDate fechaActual = LocalDate.now();
+
+        long diferenciaDias = ChronoUnit.DAYS.between(fechaIntroducida, fechaActual);
+
+        if(diferenciaDias > 30 && total < 1000){
+            clientesDeudores moroso = new clientesDeudores();
+            moroso.deuda();
+            presu += "\nPresupuesto Impago";
+        }else if(diferenciaDias > 30 && total > 1000){
+            grandesCuentas cuenta = new grandesCuentas();
+            cuenta.presupuestoElevado();
+            cuenta.deuda();
+            presu += "\nPresupuesto Impago";
+        }
+
+        Impresion presupuesto = new Impresion(archivo, presu);
+        System.out.println(presu);
     }
 
 }

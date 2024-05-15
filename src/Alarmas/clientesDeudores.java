@@ -11,6 +11,6 @@ public class clientesDeudores extends Alarmas{
 
     @Override
     public void deuda() {
-        System.out.println("Agregar a la lista de morosos");
+        System.out.println("Presupuesto Impago caducado. Agregar a la lista de morosos");
     }
 }

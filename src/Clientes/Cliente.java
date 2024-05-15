@@ -1,22 +1,31 @@
 package Clientes;
 
 import DBCustomer.*;
+
 import java.sql.Date;
 
-public class Cliente{
+public class Cliente {
     private String dni;
     private String nombreApellidos;
     private java.sql.Date fechaNacimiento;
-    private int telefono;
+    private String telefono;
     private String email;
 
 
-    public Cliente(String dni, String nombreApellidos, java.sql.Date fechaNacimiento, int telefono, String email){
+    public Cliente(String dni, String nombreApellidos, java.sql.Date fechaNacimiento, String telefono, String email) {
         this.dni = dni;
-        this. nombreApellidos = nombreApellidos;
-        this.fechaNacimiento=fechaNacimiento;
+        this.nombreApellidos = nombreApellidos;
+        this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public String toString(){
+        return "Dni : " + dni +
+                "\n" + "Nombre: " + nombreApellidos +
+                "\n" + "fechaNacimiento " + fechaNacimiento +
+                "\n" + "telefono " + telefono +
+                "\n" + "email " + email;
     }
 
     public String getDni() {
@@ -52,16 +61,13 @@ public class Cliente{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-
 
 
 }
