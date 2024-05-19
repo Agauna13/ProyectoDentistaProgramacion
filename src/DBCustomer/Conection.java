@@ -16,7 +16,7 @@ public class Conection {
     // Método para establecer la conexión con la base de datos
 
 
-    public Conection(String USER, String PASS) {
+    public Conection (String USER, String PASS) throws SQLException {
         this.USER = USER;
         this.PASS = PASS;
     }

@@ -1,6 +1,6 @@
 package Alarmas;
 
-public class clientesDeudores extends Alarmas{
+public class clientesDeudores implements Alarmas{
 
     public clientesDeudores(){
     }

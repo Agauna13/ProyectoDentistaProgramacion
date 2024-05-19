@@ -110,8 +110,9 @@ public class Presupuesto{
     public String toString(){
         return "Presupuesto nº: " + idPresupuesto +
                 "\n" + cliente.toString() +
+                "\n" +
                 "\n" + "Fecha Presupuesto " + fechaPresupuesto +
-                "\n" + "Conceptos: " + cuerpo +
+                "\n" + "Conceptos:\n" + cuerpo +
                 "\n" + "Total: " + total;
     }
 
@@ -133,12 +134,20 @@ public class Presupuesto{
 
     public void imprimirPresupuesto() throws IOException {
         Scanner sc = new Scanner(System.in);
+        LocalDate fechaIntroducida = null;
         System.out.println("introduzca el nombre del archivo ");
         String archivo = sc.nextLine();
-        System.out.println("Introduce la fecha de la intervencion en formato yyyy-MM-dd:");
-        String fechaIntervencion = sc.nextLine();
 
-        LocalDate fechaIntroducida = LocalDate.parse(fechaIntervencion, DateTimeFormatter.ISO_DATE);
+
+        while(fechaIntroducida == null){
+            try{
+                System.out.println("Introduce la fecha de la intervencion en formato yyyy-MM-dd:");//try catch
+                String fechaIntervencion = sc.nextLine();
+                fechaIntroducida = LocalDate.parse(fechaIntervencion, DateTimeFormatter.ISO_DATE);
+            }catch(Exception e){
+                System.out.println("Por favor, verifique que el formato de la fecha es YYYY-MM-DD");
+            }
+        }
         LocalDate fechaActual = LocalDate.now();
 
         long diferenciaDias = ChronoUnit.DAYS.between(fechaIntroducida, fechaActual);

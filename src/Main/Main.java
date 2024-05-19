@@ -17,12 +17,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Cliente cliente = null;
         Dentadura dentadura = null;
+        Conection conection = null;
         System.out.println("Bienvenido a la Clinica Dental: \n Inicie sesión para continuar");
-        System.out.println("nombre de usuario: ");
-        String USER = sc.nextLine();
-        System.out.println("Contraseña: ");
-        String PASS = sc.nextLine();
-        Conection conection = new Conection(USER, PASS);
+
+        conection = databaseLogin(conection);
+
 
         System.out.println("pulse 1 para Crear un cliente. \n" +
                 "Pulse 2 para Buscar un cliente. \n" +
@@ -30,10 +29,10 @@ public class Main {
                 "pulse 4 para Crear o actualizar una Dentadura. \n" +
                 "pulse 0 para salir");
 
-        int choice = 10;
+        int choice = sc.nextInt();
 
         while (choice != 0) {
-            switch (sc.nextInt()) {
+            switch (choice) {
                 case 1:
                     cliente = crearCliente(conection, cliente);
                     break;
@@ -48,19 +47,52 @@ public class Main {
                     dentadura.mostrar();
                     break;
                 default:
-                    throw new IllegalStateException("Por favor, introduzca un valor válido: " + sc.nextInt());
+                    if (choice == 0) {
+                        break;
+                    } else {
+                        throw new IllegalStateException("Por favor, introduzca un valor válido: " + sc.nextInt());
+                    }
+
             }
             System.out.println("pulse 1 para Crear un cliente. \n" +
                     "Pulse 2 para Buscar un cliente. \n" +
                     "Pulse 3 para Actualizar un cliente. \n" +
                     "pulse 4 para Crear o actualizar una Dentadura. \n" +
                     "pulse 0 para salir");
+            choice = sc.nextInt();
         }
+
+        System.out.println("¡Hasta Pronto!");
 
 
     }
 
+    private static Conection databaseLogin(Conection conection) throws SQLException {
+        boolean conexion = false;
+        Scanner sc = new Scanner(System.in);
+        String USER;
+        String PASS;
 
+        while (!conexion) {
+            System.out.println("nombre de usuario: ");
+            USER = sc.nextLine();
+            System.out.println("Contraseña: ");
+            PASS = sc.nextLine();
+            conection = new Conection(USER, PASS);
+            try {
+                conection.getConnection();
+                conexion = true;
+            } catch (Exception e) {
+                conexion = false;
+                USER = "";
+                PASS = "";
+                System.out.println("Nombre de usuario o contraseña Incorrectos.\n Vuelva a intentarlo");
+            }
+        }
+
+
+        return conection;
+    }
 
     private static Dentadura crearDentadura(Conection conection, Dentadura dentadura, Cliente cliente) throws SQLException {
         dentadura = menuDentadura(dentadura);
@@ -75,7 +107,7 @@ public class Main {
         }
         Presupuesto presupuesto = null;
         try {
-            presupuesto = new Presupuesto(dentadura , cliente);
+            presupuesto = new Presupuesto(dentadura, cliente);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

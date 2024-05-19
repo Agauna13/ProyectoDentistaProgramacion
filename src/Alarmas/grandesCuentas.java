@@ -1,6 +1,6 @@
 package Alarmas;
 
-public class grandesCuentas extends Alarmas{
+public class grandesCuentas implements Alarmas{
 
     public grandesCuentas(){
         presupuestoElevado();
