@@ -13,12 +13,18 @@ En tercer lugar, nos queda el paquete dentadura, parte vital de nuestro programa
 
 La clase Dentadura toma como parámetro el id del diente según la nomenclatura antes explicada y el estado que queremos asignarle, luego recorre el array bidimensional donde hemos guardado la dentadura creada por defecto y asigna el estado al diente pertinente. El método mostar() nos muestra la dentadura que hemos creado por consola de la siguiente manera: 
 
-18 17 16 15 14 13 12 11 21 22 23 24 25 26 27 28 
+18 17 16 15 14 13 12 11 21 22 23 24 25 26 27 28
+
  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+ 
  B  B  B  B  B  B  B     B  B  B  B  B  B  B  B 
+ 
  B  B  B  B  B  B  B  B  B  B  B  B  B  B  B  B 
- |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+ 
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ 
 48 47 46 45 44 43 42 41 31 32 33 34 35 36 37 38 
+
 
 Podemos observar que el diente numero 11 ha sido extraído y el resto de la dentadura conserva el estado [B] porque los presuponemos en buen estado.
 
