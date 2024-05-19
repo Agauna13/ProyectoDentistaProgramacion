@@ -7,7 +7,9 @@ Por otro lado, está el paquete DBCustomer, que nos hace la conexión a la base 
 
 
 En tercer lugar, nos queda el paquete dentadura, parte vital de nuestro programa y alrededor de la cual gira todo. Ésta clase nos construye la dentadura de cada cliente en funcion de las intervenciones realizadas. Para no hacerlo demasiado extenso, se han incluído 3 tipos de intervención, a saber, Extracciones, Protesis y Empastes. La clase tiene un constructor por defecto que nos crea una dentadura adulta con todos los dientes diferenciados según la nomenclatura FDI (Iniciales de Federación Dental Internacional) la cual diferencia los dientes según la zona de la boca donde se encuentran (11 - 18 para los dientes situados en la zona superior derecha, 21-28 para los situados arriba a la izquierda, 4
-1-48 para los de la zona inferior derecha y finalmente 31-38 para la zona inferior izquierda). ![numeros_de_los_dientes](https://github.com/Agauna13/ProyectoDentistaProgramacion/assets/151865658/69539f2e-9372-477c-8dba-20bc48b2edcc).
+1-48 para los de la zona inferior derecha y finalmente 31-38 para la zona inferior izquierda).
+
+![numeros_de_los_dientes](https://github.com/Agauna13/ProyectoDentistaProgramacion/assets/151865658/69539f2e-9372-477c-8dba-20bc48b2edcc).
 
 La clase Dentadura toma como parámetro el id del diente según la nomenclatura antes explicada y el estado que queremos asignarle, luego recorre el array bidimensional donde hemos guardado la dentadura creada por defecto y asigna el estado al diente pertinente. El método mostar() nos muestra la dentadura que hemos creado por consola de la siguiente manera: 
 
